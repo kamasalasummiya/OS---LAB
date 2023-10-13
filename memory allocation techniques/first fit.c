@@ -4,10 +4,10 @@
 void main()
 {
 int
-frag[max],b[max],f[max],i,j,nb,nf,t
-emp; static int bf[max],ff[max];
+frag[max],b[max],f[max],i,j,nb,nf,temp,highes
+t=0; static int bf[max],ff[max];
 clrscr();
-printf("\n\tMemory Management Scheme - First Fit");
+printf("\n\tMemory Management Scheme - Worst Fit");
 printf("\nEnter the number of blocks:");
 scanf("%d",&nb);
 printf("Enter the number of files:");
@@ -23,26 +23,26 @@ for(i=1;i<=nf;i++)
 {
 printf("File %d:",i);
 scanf("%d",&f[i]);
-
 }
+
 for(i=1;i<=nf;i++)
 {
 for(j=1;j<=nb;j++)
 {
-if(bf[j]!=1)
+if(bf[j]!=1) //if bf[j] is not allocated
 {
 temp=b[j]-f[i];
 if(temp>=0)
+if(highest<temp)
 {
-ff[i]=j;
-break;
+
 }
 }
+frag[i]=highest; bf[ff[i]]=1; highest=0;
 }
-frag[i]=temp;
-bf[ff[i]]=1;
+ff[i]=j; highest=temp;
 }
-printf("\nFile_no:\tFile_size :\tBlock_no:\tBlock_size:\tFragement");
+printf("\nFile_no:\tFile_size:\tBlock_no:\tBlock_size:\tFragement");
 for(i=1;i<=nf;i++)
 printf("\n%d\t\t%d\t\t%d\t\t%d\t\t%d",i,f[i],ff[i],b[ff[i]],frag[i]);
 getch();
